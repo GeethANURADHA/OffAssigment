@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Manager</h1>
+            <p>Manage your daily tasks efficiently</p>
+        </header>
+
+        <main>
+            <section class="task-form-section">
+                <form id="task-form">
+                    <input type="text" id="task-title" placeholder="What needs to be done?" required>
+                    <input type="text" id="task-desc" placeholder="Details (optional)">
+                    <button type="submit" class="btn-primary">Add Task</button>
+                </form>
+            </section>
+
+            <section class="task-list-section">
+                <div class="task-controls">
+                    <h2>Your Tasks</h2>
+                    <span id="task-count">0 tasks</span>
+                </div>
+                <ul id="task-list">
+                    <!-- Tasks will be injected here via JS -->
+                    <li class="loading">Loading tasks...</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
