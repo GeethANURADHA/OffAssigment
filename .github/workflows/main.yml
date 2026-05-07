@@ -1,48 +1,43 @@
-name: CI/CD Pipeline
+name: Node.js CI/CD to Docker Hub
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-and-test:
+  build-test-and-push:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
+      # 1. Checkout the repository code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install dependencies
+      # 3. Install Node.js dependencies using npm ci (Setup)
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Run tests
-        # This will run the dummy test script in package.json
+      # 4. Run the existing test script in package.json (Testing)
+      - name: Run Tests
         run: npm test
 
-  docker-build-and-push:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      # 5. Authenticate to Docker Hub using GitHub Secrets (Push)
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker image
+      # 6. Build a Docker image using the existing Dockerfile and Push (Dockerization & Push)
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
           context: .
