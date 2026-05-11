@@ -238,12 +238,21 @@ input[type="text"]:focus {
     text-decoration: line-through;
 }
 
+/* Action buttons group */
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.edit-btn,
 .delete-btn {
     background: none;
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0.35rem;
     border-radius: 6px;
     transition: color 0.2s, background-color 0.2s;
     display: flex;
@@ -251,9 +260,100 @@ input[type="text"]:focus {
     justify-content: center;
 }
 
+.edit-btn:hover {
+    color: var(--accent-color);
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
 .delete-btn:hover {
     color: var(--danger-color);
     background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Inline edit form */
+.task-item.editing {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.edit-title-input,
+.edit-desc-input {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-title-input {
+    font-weight: 500;
+}
+
+.edit-desc-input {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.edit-title-input:focus,
+.edit-desc-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.edit-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-save {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-save:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-save:active {
+    transform: scale(0.97);
+}
+
+.btn-cancel {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-cancel:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 .empty-state, .loading, .error {
