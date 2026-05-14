@@ -18,7 +18,7 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - MONGO_URI=https://github.com/GeethANURADHA/OffAssigment/settings/environments/14898992916/edit
+      - MONGO_URI=mongodb://mongo:27017/task-manager
     depends_on:
       - mongo
 
