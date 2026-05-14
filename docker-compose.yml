@@ -18,7 +18,7 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - MONGO_URI=mongodb://mongo:27017/task-manager
+      - MONGO_URI=mongodb+srv://geethanuradhait_db_user:lK3avheFeUeX82wc@cluster0.1s7wjkj.mongodb.net/task-manager?appName=Cluster0
     depends_on:
       - mongo
 
